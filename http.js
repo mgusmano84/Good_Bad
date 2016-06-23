@@ -20,22 +20,38 @@ var server = http.createServer(function(req, res) {
 		'Content-Type': 'text/html'
 	});
 
-	//if twitter needs to be used
-	var twit = function() {
-		var client = new Twitter(twitterKeys);
-		client.get('statuses/user_timeline', {screen_name: 'gusmano84', count: 20}, function(error, tweets, response) {
-		for (var prop in tweets) {
-  			console.log(tweets[prop].text);
-  		}
-  		})
+	switch(req.url) {
+		case '/meow':
+			meow(req, res);
+		break;
+
+		default:
+			res.end('4 oh 4');
 	}
 
-	var bad = Array("you suck","you bite","Loser","Slacker","weak");
-	var bader = bad[Math.floor(Math.random()*bad.length)];
+	
 
-	var reallybad = bader
+	function meow (req, res) {
+		res.end('test');
+	}
 
-	res.end(bader);
+
+	// //if twitter needs to be used, otherwise leave commented out
+	// var twit = function() {
+	// 	var client = new Twitter(twitterKeys);
+	// 	client.get('statuses/user_timeline', {screen_name: 'gusmano84', count: 20}, function(error, tweets, response) {
+	// 	for (var prop in tweets) {
+ //  			console.log(tweets[prop].text);
+ //  		}
+ //  		})
+	// }
+
+	// var bad = Array("you suck","you bite","Loser","Slacker","weak");
+	// var bader = bad[Math.floor(Math.random()*bad.length)];
+
+	// var reallybad = bader
+
+	// res.end(bader);
 });
 
 //return bad
